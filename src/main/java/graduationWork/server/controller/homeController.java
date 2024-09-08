@@ -5,6 +5,7 @@ import graduationWork.server.domain.Insurance;
 import graduationWork.server.domain.User;
 import graduationWork.server.domain.UserInsurance;
 import graduationWork.server.dto.DelayCompensationApplyForm;
+import graduationWork.server.dto.DelaySearchApplyForm;
 import graduationWork.server.dto.FlightSearchResult;
 import graduationWork.server.enumurate.FlightStatus;
 import graduationWork.server.service.FlightService;
@@ -29,7 +30,7 @@ public class homeController {
 
     @GetMapping("/")
     public String homeLogin(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser,
-                            @ModelAttribute("delayForm") DelayCompensationApplyForm delayForm,
+                            @ModelAttribute("delayForm") DelaySearchApplyForm delayForm,
                             Model model) {
         if(loginUser == null) {
             return "home";
@@ -48,7 +49,7 @@ public class homeController {
 
     @PostMapping("/")
     public String searchInsurance(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser,
-                                  @Validated @ModelAttribute("delayForm") DelayCompensationApplyForm delayForm,
+                                  @Validated @ModelAttribute("delayForm") DelaySearchApplyForm delayForm,
                                   BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
