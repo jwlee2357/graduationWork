@@ -2,20 +2,22 @@ package graduationWork.server.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 public class MemberJoinForm {
 
-    @NotBlank(message = "이름을 입력해주세요.")
+    @NotBlank(message = "{please.enter.name}")
     private String username;
 
-    @NotBlank(message = "로그인 아이디를 입력해주세요.")
+    @NotBlank(message = "{please.enter.login.id}")
     private String loginId;
 
-    @NotBlank(message = "비밀번호를 입력해주세요.")
+    @NotBlank(message = "{please.enter.password}")
+    @Length(min=8, max=20)
     private String password;
 
-    @NotBlank(message = "이메일을 입력해주세요.")
+    @NotBlank(message = "{please.enter.email}")
     private String email;
 
     private String walletAddress;
