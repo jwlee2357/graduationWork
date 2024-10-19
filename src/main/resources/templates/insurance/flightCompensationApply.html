@@ -31,6 +31,11 @@
         </div>
 
         <div class="mb-3">
+            <label for="reservationNumber" class="form-label">예약 번호</label>
+            <input type="text" class="form-control" id="reservationNumber" name="reservationNumber">
+        </div>
+
+        <div class="mb-3">
             <label for="flightNumber" class="form-label" th:text="#{flight.number}">항공기 번호</label>
             <input type="text" class="form-control" id="flightNumber" name="flightNum"
                    th:field="*{flightNum}" th:errorclass="field-error">

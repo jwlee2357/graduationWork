@@ -9,10 +9,12 @@ import graduationWork.server.enumurate.InsuranceType;
 import graduationWork.server.ether.UpbitApiClient;
 import graduationWork.server.ether.Web3jClient;
 import graduationWork.server.file.FileStore;
+import graduationWork.server.flightApi.FlightClient;
 import graduationWork.server.service.*;
 import graduationWork.server.utils.DateTimeUtils;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -185,9 +187,10 @@ public class InsuranceController {
                                     @Validated @ModelAttribute("form") CompensationApplyForm form,
                                     BindingResult bindingResult,
                                     Model model,
-                                    HttpSession session) {
+                                    HttpSession session) throws IOException {
 
         LocalDate occurrenceDate = form.getOccurrenceDate();
+        System.out.println("occurrenceDate = " + occurrenceDate);
         if (!isDateValid(occurrenceDate, userInsuranceId)) {
             bindingResult.rejectValue("occurrenceDate", "InvalidOccurrenceDate", "발생 일자가 가입 기간에 속하지 않습니다. 다시 입력해주세요.");
         }
@@ -203,6 +206,7 @@ public class InsuranceController {
         session.setAttribute("applyForm", form);
         userInsuranceService.applyFirstCompensationForm(userInsuranceId, loginUser.getId(), form);
         if (form.getReason().equals("항공기 및 수하물 지연 보상")) {
+//            flightService.setFlightFromOpenApi();
             return "redirect:/insurance/compensation/apply/flightDelay?userInsuranceId=" + userInsuranceId;
         }
         else {
@@ -283,7 +287,7 @@ public class InsuranceController {
     //보상 완료
     @GetMapping( "/insurance/compensation/apply/flightDelay/confirm")
     public String flightCompensationConfirm(@RequestParam Long userInsuranceId, Model model,
-                                        @SessionAttribute(name = SessionConst.LOGIN_USER) User loginUser) {
+                                            @SessionAttribute(name = SessionConst.LOGIN_USER) User loginUser) {
 
         UserInsurance userInsurance = userInsuranceService.findOne(userInsuranceId);
         CompensationOption option = userInsurance.getCompensationOption();
@@ -342,9 +346,9 @@ public class InsuranceController {
     //파일 업로드
     @PostMapping("/insurance/compensation/apply/upload")
     public ResponseEntity<?> upload(@RequestParam Long userInsuranceId,
-                                                      @SessionAttribute(name = SessionConst.LOGIN_USER) User loginUser,
-                                                      @ModelAttribute("uploadForm") UploadCompensationApplyForm uploadForm,
-                                                      BindingResult bindingResult) throws IOException {
+                                    @SessionAttribute(name = SessionConst.LOGIN_USER) User loginUser,
+                                    @ModelAttribute("uploadForm") UploadCompensationApplyForm uploadForm,
+                                    BindingResult bindingResult) throws IOException {
 
         Map<String, String> response = new HashMap<>();
 
@@ -390,7 +394,7 @@ public class InsuranceController {
 
     @GetMapping("/insurance/domestic")
     public String domesticInsuranceLists(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser,
-                                 Model model) {
+                                         Model model) {
         List<Insurance> domesticInsurances = insuranceService.findAllInsurancesByType(InsuranceType.DOMESTIC);
         model.addAttribute("domesticInsurances", domesticInsurances);
 
@@ -399,7 +403,7 @@ public class InsuranceController {
 
     @GetMapping("/insurance/oversea")
     public String overseaInsuranceLists(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser,
-                                 Model model) {
+                                        Model model) {
         List<Insurance> overseasInsurances = insuranceService.findAllInsurancesByType(InsuranceType.OVERSEAS);
         model.addAttribute("overseasInsurances", overseasInsurances);
 
