@@ -19,10 +19,10 @@ public class InitFlights {
 
     private final InitFlightService initFlightService;
 
-   // @PostConstruct
-   // public void init() {
-   //     initFlightService.initFlights();
-   // }
+   @PostConstruct
+   public void init() {
+       initFlightService.initFlights();
+   }
 
     @Component
     @Transactional
@@ -45,7 +45,7 @@ public class InitFlights {
             flight2.setDestination("LAX");
             flight2.setDepartureDate(LocalDateTime.of(2024, 10, 22, 12, 00));
             flight2.setFlightNum("KE017");
-            flight2.setStatus(FlightStatus.SCHEDULED);
+            flight2.setStatus(FlightStatus.DELAYED);
             em.persist(flight2);
 
             Flight flight3 = new Flight();
@@ -53,7 +53,7 @@ public class InitFlights {
             flight3.setDestination("YVR");
             flight3.setDepartureDate(LocalDateTime.of(2024, 10, 23, 12, 00));
             flight3.setFlightNum("KE071");
-            flight3.setStatus(FlightStatus.SCHEDULED);
+            flight3.setStatus(FlightStatus.DELAYED);
             em.persist(flight3);
 
             Flight flight4 = new Flight();
@@ -61,7 +61,7 @@ public class InitFlights {
             flight4.setDestination("NRT");
             flight4.setDepartureDate(LocalDateTime.of(2024, 10, 24, 12, 00));
             flight4.setFlightNum("KE701");
-            flight4.setStatus(FlightStatus.SCHEDULED);
+            flight4.setStatus(FlightStatus.DELAYED);
             em.persist(flight4);
 
             Flight flight5 = new Flight();
@@ -69,7 +69,7 @@ public class InitFlights {
             flight5.setDestination("CDG");
             flight5.setDepartureDate(LocalDateTime.of(2024, 10, 25, 12, 00));
             flight5.setFlightNum("KE901");
-            flight5.setStatus(FlightStatus.SCHEDULED);
+            flight5.setStatus(FlightStatus.DELAYED);
             em.persist(flight5);
 
             Flight flight6 = new Flight();
@@ -77,7 +77,7 @@ public class InitFlights {
             flight6.setDestination("HAN");
             flight6.setDepartureDate(LocalDateTime.of(2024, 10, 26, 12, 00));
             flight6.setFlightNum("OZ765");
-            flight6.setStatus(FlightStatus.CANCELLED);
+            flight6.setStatus(FlightStatus.DELAYED);
             em.persist(flight6);
 
             Flight flight7 = new Flight();
