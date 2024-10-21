@@ -35,7 +35,7 @@ public class InitFlights {
             Flight flight1 = new Flight();
             flight1.setDeparture("서울");
             flight1.setDestination("뉴욕");
-            flight1.setDepartureDate(LocalDateTime.of(2024, 10, 19, 10, 30));
+            flight1.setDepartureDate(LocalDateTime.of(2024, 10, 21, 10, 30));
             flight1.setFlightNum("KE081");
             flight1.setStatus(FlightStatus.DELAYED);
             em.persist(flight1);
