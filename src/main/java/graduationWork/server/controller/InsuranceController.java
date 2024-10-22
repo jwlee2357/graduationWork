@@ -205,7 +205,7 @@ public class InsuranceController {
         User loginUser = (User) session.getAttribute("loginUser");
         session.setAttribute("applyForm", form);
         userInsuranceService.applyFirstCompensationForm(userInsuranceId, loginUser.getId(), form);
-        if (form.getReason().equals("항공기 및 수하물 지연 보상")) {
+        if (form.getReason().equals("항공기 지연, 취소소")) {
 //            flightService.setFlightFromOpenApi();
             return "redirect:/insurance/compensation/apply/flightDelay?userInsuranceId=" + userInsuranceId;
         }
