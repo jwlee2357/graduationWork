@@ -88,7 +88,6 @@ public class InitFlights {
             flight7.setStatus(FlightStatus.DELAYED);
             em.persist(flight7);
 
-
             Flight flight8 = new Flight();
             flight8.setDeparture("ICN");
             flight8.setDestination("CJU");
@@ -96,6 +95,70 @@ public class InitFlights {
             flight8.setFlightNum("7C111");
             flight8.setStatus(FlightStatus.DELAYED);
             em.persist(flight8);
+
+            Flight flight9 = new Flight();
+            flight9.setDeparture("ICN");
+            flight9.setDestination("JFK");
+            flight9.setDepartureDate(LocalDateTime.of(2024, 11, 1, 12, 00));
+            flight9.setFlightNum("KE081");
+            flight9.setStatus(FlightStatus.DELAYED);
+            em.persist(flight9);
+
+            Flight flight10 = new Flight();
+            flight10.setDeparture("ICN");
+            flight10.setDestination("LAX");
+            flight10.setDepartureDate(LocalDateTime.of(2024, 11, 2, 12, 00));
+            flight10.setFlightNum("KE017");
+            flight10.setStatus(FlightStatus.DELAYED);
+            em.persist(flight10);
+
+            Flight flight11 = new Flight();
+            flight11.setDeparture("ICN");
+            flight11.setDestination("YVR");
+            flight11.setDepartureDate(LocalDateTime.of(2024, 11, 3, 12, 00));
+            flight11.setFlightNum("KE071");
+            flight11.setStatus(FlightStatus.DELAYED);
+            em.persist(flight11);
+
+            Flight flight12 = new Flight();
+            flight12.setDeparture("ICN");
+            flight12.setDestination("NRT");
+            flight12.setDepartureDate(LocalDateTime.of(2024, 11, 4, 12, 00));
+            flight12.setFlightNum("KE701");
+            flight12.setStatus(FlightStatus.DELAYED);
+            em.persist(flight12);
+
+            Flight flight13 = new Flight();
+            flight13.setDeparture("ICN");
+            flight13.setDestination("CDG");
+            flight13.setDepartureDate(LocalDateTime.of(2024, 11, 5, 12, 00));
+            flight13.setFlightNum("KE901");
+            flight13.setStatus(FlightStatus.DELAYED);
+            em.persist(flight13);
+
+            Flight flight14 = new Flight();
+            flight14.setDeparture("ICN");
+            flight14.setDestination("HAN");
+            flight14.setDepartureDate(LocalDateTime.of(2024, 11, 6, 12, 00));
+            flight14.setFlightNum("OZ765");
+            flight14.setStatus(FlightStatus.DELAYED);
+            em.persist(flight14);
+
+            Flight flight15 = new Flight();
+            flight15.setDeparture("ICN");
+            flight15.setDestination("OKA");
+            flight15.setDepartureDate(LocalDateTime.of(2024, 11, 7, 12, 00));
+            flight15.setFlightNum("OZ172");
+            flight15.setStatus(FlightStatus.DELAYED);
+            em.persist(flight15);
+
+            Flight flight16 = new Flight();
+            flight16.setDeparture("ICN");
+            flight16.setDestination("CJU");
+            flight16.setDepartureDate(LocalDateTime.of(2024, 11, 8, 12, 00));
+            flight16.setFlightNum("7C111");
+            flight16.setStatus(FlightStatus.DELAYED);
+            em.persist(flight16);
         }
     }
 }
